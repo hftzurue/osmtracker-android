@@ -34,6 +34,14 @@ public class TagButtonOnClickListener implements OnClickListener {
 		Button button = (Button) view;
 		String label = button.getText().toString().replaceAll("\n", " ");
 
+		/*
+		Propuesta de formulario: para los botones asociados a una
+		plantilla, abrir aquí el formulario de atributos antes de enviar
+		INTENT_TRACK_WP. Al finalizar, registraría un único waypoint con los
+		valores capturados, cancelar no registraría el punto.
+		Los botones sin plantilla conservarían su comportamiento actual.
+		*/
+
 		// Send an intent to inform service to track the waypoint.
 		Intent intent = new Intent(OSMTracker.INTENT_TRACK_WP);
 		intent.putExtra(TrackContentProvider.Schema.COL_TRACK_ID, currentTrackId);
