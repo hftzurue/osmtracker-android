@@ -5,6 +5,20 @@
 		android:id="@+id/gpsStatus" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 
+	<!-- Primera parte: solo muestra el estado del modo compuesto. -->
+	<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:padding="8dp">
+		<TextView android:id="@+id/tracklogger_compound_status"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:accessibilityLiveRegion="polite"
+			android:text="@string/tracklogger_compound_disabled" />
+		<Button android:id="@+id/tracklogger_compound_toggle"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:text="@string/tracklogger_compound_start" />
+		<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:text="@string/tracklogger_compound_pending" />
+	</LinearLayout>
+
 	<LinearLayout android:id="@+id/tracklogger_root" android:layout_width="fill_parent"
-	    android:layout_height="fill_parent" android:orientation="vertical"></LinearLayout>
+	    android:layout_height="0dp" android:layout_weight="1" android:orientation="vertical"></LinearLayout>
 </LinearLayout>

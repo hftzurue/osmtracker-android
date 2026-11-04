@@ -17,6 +17,11 @@
   <string name="tracklogger_choose_gallery_camera">¿Galería o cámara?</string>
   <string name="tracklogger_camera">Tomar foto con la cámara</string>
   <string name="tracklogger_gallery">Seleccionar foto desde la galería</string>
+  <string name="tracklogger_compound_disabled">Modo compuesto desactivado</string>
+  <string name="tracklogger_compound_enabled">Modo compuesto activado</string>
+  <string name="tracklogger_compound_start">Activar modo compuesto</string>
+  <string name="tracklogger_compound_stop">Desactivar modo compuesto</string>
+  <string name="tracklogger_compound_pending">La captura sigue creando puntos separados. Falta asociar el waypoint y sus atributos.</string>
   <!--Waypoint List-->
   <string name="wplist">Lista de puntos</string>
   <string name="wplist_latitude">Lat.: </string>

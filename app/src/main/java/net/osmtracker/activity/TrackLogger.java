@@ -29,6 +29,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -98,6 +100,8 @@ public class TrackLogger extends Activity {
 	 * Bundle state key button state.
 	 */
 	public static final String STATE_BUTTONS_ENABLED = "buttonsEnabled";
+
+	private boolean compoundMode = false;
 
 	/**
 	 * GPS Logger service, to receive events and be able to update UI.
@@ -216,6 +220,17 @@ public class TrackLogger extends Activity {
 			buttonsEnabled = savedInstanceState.getBoolean(STATE_BUTTONS_ENABLED, false);
 		}
 		
+		Button compoundButton = findViewById(R.id.tracklogger_compound_toggle);
+		TextView compoundStatus = findViewById(R.id.tracklogger_compound_status);
+		compoundButton.setOnClickListener(view -> {
+			compoundMode = !compoundMode;
+			compoundStatus.setText(compoundMode ? R.string.tracklogger_compound_enabled
+					: R.string.tracklogger_compound_disabled);
+			compoundButton.setText(compoundMode ? R.string.tracklogger_compound_stop
+					: R.string.tracklogger_compound_start);
+			// TODO: conectar este modo con un waypoint y los atributos del layout.
+		});
+
 		// create sensor listener
 		sensorListener = new SensorListener();
 
