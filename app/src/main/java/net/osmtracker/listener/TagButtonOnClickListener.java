@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
+import net.osmtracker.activity.TrackLogger;
 import net.osmtracker.db.TrackContentProvider;
 
 
@@ -33,6 +34,11 @@ public class TagButtonOnClickListener implements OnClickListener {
 	public void onClick(View view) {
 		Button button = (Button) view;
 		String label = button.getText().toString().replaceAll("\n", " ");
+
+		// Muestra el elemento elegido; la captura sigue siendo individual.
+		if (view.getContext() instanceof TrackLogger) {
+			((TrackLogger) view.getContext()).selectPointActiveElement(label);
+		}
 
 		/*
 		Propuesta de formulario: para los botones asociados a una

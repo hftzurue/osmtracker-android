@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -101,7 +102,8 @@ public class TrackLogger extends Activity {
 	 */
 	public static final String STATE_BUTTONS_ENABLED = "buttonsEnabled";
 
-	private boolean compoundMode = false;
+	private boolean pointActiveMode = false;
+	private boolean pointActiveElementSelected = false;
 
 	/**
 	 * GPS Logger service, to receive events and be able to update UI.
@@ -184,6 +186,18 @@ public class TrackLogger extends Activity {
 		return buttonsEnabled;
 	}
 
+	public void selectPointActiveElement(String label) {
+		if (pointActiveMode && !pointActiveElementSelected) {
+			TextView status = findViewById(R.id.tracklogger_point_active_status);
+			status.setText(getString(R.string.tracklogger_point_active_selected, label));
+			pointActiveElementSelected = true;
+		} else if (pointActiveMode) {
+			TextView captures = findViewById(R.id.tracklogger_point_active_captures);
+			captures.append("\n• " + label);
+			captures.setVisibility(View.VISIBLE);
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -220,15 +234,19 @@ public class TrackLogger extends Activity {
 			buttonsEnabled = savedInstanceState.getBoolean(STATE_BUTTONS_ENABLED, false);
 		}
 		
-		Button compoundButton = findViewById(R.id.tracklogger_compound_toggle);
-		TextView compoundStatus = findViewById(R.id.tracklogger_compound_status);
-		compoundButton.setOnClickListener(view -> {
-			compoundMode = !compoundMode;
-			compoundStatus.setText(compoundMode ? R.string.tracklogger_compound_enabled
-					: R.string.tracklogger_compound_disabled);
-			compoundButton.setText(compoundMode ? R.string.tracklogger_compound_stop
-					: R.string.tracklogger_compound_start);
-			// TODO: conectar este modo con un waypoint y los atributos del layout.
+		Button pointActiveButton = findViewById(R.id.tracklogger_point_active_toggle);
+		TextView pointActiveStatus = findViewById(R.id.tracklogger_point_active_status);
+		TextView pointActiveCaptures = findViewById(R.id.tracklogger_point_active_captures);
+		pointActiveCaptures.setMovementMethod(ScrollingMovementMethod.getInstance());
+		pointActiveButton.setOnClickListener(view -> {
+			pointActiveMode = !pointActiveMode;
+			pointActiveElementSelected = false;
+			pointActiveCaptures.setText(R.string.tracklogger_point_active_captures);
+			pointActiveCaptures.setVisibility(View.GONE);
+			pointActiveCaptures.scrollTo(0, 0);
+			pointActiveStatus.setText(pointActiveMode ? R.string.tracklogger_point_active_enabled : R.string.tracklogger_point_active_disabled);
+			pointActiveButton.setText(pointActiveMode ? R.string.tracklogger_point_active_stop : R.string.tracklogger_point_active_start);
+			// Falta asociar las capturas al punto activo.
 		});
 
 		// create sensor listener

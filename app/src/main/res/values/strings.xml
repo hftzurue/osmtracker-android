@@ -17,11 +17,13 @@
   <string name="tracklogger_choose_gallery_camera">Gallery or camera?</string>
   <string name="tracklogger_camera">Take photo with camera</string>
   <string name="tracklogger_gallery">Select photo from gallery</string>
-  <string name="tracklogger_compound_disabled">Compound mode off</string>
-  <string name="tracklogger_compound_enabled">Compound mode on</string>
-  <string name="tracklogger_compound_start">Enable compound mode</string>
-  <string name="tracklogger_compound_stop">Disable compound mode</string>
-  <string name="tracklogger_compound_pending">Capture still creates separate points. Linking the waypoint and its attributes is pending.</string>
+  <string name="tracklogger_point_active_disabled">Active Point off</string>
+  <string name="tracklogger_point_active_enabled">Active Point: choose an element</string>
+  <string name="tracklogger_point_active_selected">Active Point: %1$s</string>
+  <string name="tracklogger_point_active_captures">Buttons pressed:</string>
+  <string name="tracklogger_point_active_start">Activate</string>
+  <string name="tracklogger_point_active_stop">Finish</string>
+  <string name="tracklogger_point_active_pending">Captures are still saved as separate points.</string>
   <!--Waypoint List-->
   <string name="wplist">Waypoint list</string>
   <string name="wplist_latitude">Lat: </string>
